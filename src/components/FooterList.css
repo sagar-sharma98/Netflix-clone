@@ -1,0 +1,14 @@
+.description_list {
+  display: flex;
+  flex-direction: row;
+  div{
+    li {
+      display: inline-block;
+      width: 100%;
+      padding: 4px;
+      text-decoration: none;
+      font-weight: lighter;
+    }
+  }
+ 
+}
