@@ -6,6 +6,7 @@ import MyList from "./MyList";
 import Popular from "./Popular";
 import Signup from "./Signup";
 import Movies from "./Movies";
+import LogoutPage from "./LogoutPage";
 
 function AllRoutes () {
 
@@ -16,10 +17,14 @@ function AllRoutes () {
             <Route path="/" element={<TvShows/>}></Route>
             <Route path="/" element={<Popular/>}></Route>
             <Route path="/" element={<MyList/>}></Route>
-            <Route path="/" element={<Signup/>}></Route>
-            <Route path="/" element={<Login/>}></Route>
+            <Route path="/signup" element={<Signup/>}></Route>
+            <Route path="/login" element={<Login/>}></Route>
+            <Route path="/logout" element={<LogoutPage/>}></Route>
         </Routes>
     )
 }
 
 export default AllRoutes;
+
+
+

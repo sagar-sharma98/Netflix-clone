@@ -25,7 +25,7 @@ export default function LogoutPage() {
             </div>
             <div className="container">
               
-              <button onClick={handleLogIn}>Logout</button>
+              <button className="login-btn" onClick={handleLogIn}>Logout</button>
             </div>
             <Link to="/">Go to home page</Link>
           </div>
