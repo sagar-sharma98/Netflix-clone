@@ -1,0 +1,39 @@
+
+
+.video_container {
+  position: fixed;
+  width: 60vw;
+  height: 80vh;
+  background-color: black;
+  z-index: 9;
+  top: 6rem;
+  left: 18rem;
+  border-radius: 4px;
+}
+
+.video_modal {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 4px;
+}
+
+
+.video_modal iframe {
+    width: 100%; /* Ensure iframe fills the width */
+    height: 100%; /* Ensure iframe fills the height */
+    border: none;
+    border-radius: 4px;
+  }
+  
+  .video_modal .close_icon {
+    display: flex;
+    position: relative;
+    left: 28rem;
+    align-items: end;
+    cursor: pointer;
+    color: white;
+    z-index: 10; /* Ensure it's above the iframe */
+  }

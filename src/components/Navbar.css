@@ -1,7 +1,7 @@
 .navbar_container {
   position: fixed;
   top: 0;
-  z-index: 10;
+  z-index: 2;
   display: flex;
   flex-direction: row;
   background-color: black;
@@ -63,6 +63,7 @@
   display: flex;
   align-items: center;
   gap: 0.1rem;
+  cursor: pointer;
 }
 
 

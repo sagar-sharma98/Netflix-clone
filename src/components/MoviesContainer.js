@@ -1,10 +1,12 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import "./MovieContainer.css";
 import MovieCategory from "./MovieCategory";
+import { addMovies, loginAuth } from "../App";
 
 
 function MoviesContainer() {
   const [moviesData, setMoviesData] = useState([]);
+  const {dispatch} = useContext(loginAuth);
 
   const url = 'https://movies-api14.p.rapidapi.com/home';
 const options = {
@@ -20,6 +22,8 @@ const options = {
       const response = await fetch(url, options);
     const result = await response.json();
     setMoviesData(result);
+    dispatch(addMovies(result));
+    
     } catch (error) {
       console.log(error);
     }  

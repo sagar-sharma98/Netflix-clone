@@ -1,5 +1,4 @@
 
-
 .loginContent {
     position: absolute;
     top: 0;
@@ -60,7 +59,7 @@
   left: 11rem;
   top: -1rem;
   cursor: pointer;
-}
+    }
 .title{
   display: flex;
   flex-direction: row;
