@@ -6,6 +6,9 @@ import { FaCircleChevronDown } from "react-icons/fa6";
 import { FaRegThumbsUp } from "react-icons/fa";
 import VideoPlayerModal from "../modal/VideoPlayerModal";
 
+const dummy_video = process.env.PUBLIC_URL + "/videos/Dummy_Video.mp4";
+
+
 function Card({ movie }) {
   const [hover, setHover] = useState(false);
   const [imageClick, setImageClick] = useState(false);
@@ -51,7 +54,7 @@ function Card({ movie }) {
           </div>
         </div>
       )}
-      {imageClick && <VideoPlayerModal videosrc="" closeVideoHandler={videoModalHandler}/>}
+      {imageClick && <VideoPlayerModal videosrc={dummy_video} closeVideoHandler={videoModalHandler}/>}
     </div>
   );
 }

@@ -5,6 +5,8 @@ import { AiOutlineInfoCircle } from "react-icons/ai";
 import "./MovieBox.css";
 import VideoPlayerModal from "../modal/VideoPlayerModal";
 
+const ghostedTrailer = process.env.PUBLIC_URL + "/videos/GHOSTED.mp4";
+
 function MovieBox() {
   const [movie, setMovie] = useState([]);
   const [imageClick, setImageClick] = useState(false);
@@ -76,7 +78,7 @@ function MovieBox() {
       </div>
       {imageClick && (
         <VideoPlayerModal
-          videosrc="https://www.youtube.com/embed/5jGtUj8lE1U"
+          videosrc={ghostedTrailer}
           closeVideoHandler={videoModalHandler}
         />
       )}

@@ -1,21 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./VideoPlayerModal.css";
-import { IoClose } from "react-icons/io5";
+import { FaArrowLeft } from "react-icons/fa6";
 
 export default function VideoPlayerModal({ videosrc, closeVideoHandler }) {
   return ReactDOM.createPortal(
     <div className="video_container">
       <div className="video_modal">
-        <IoClose className="close_icon" size={40} onClick={closeVideoHandler} />
+        <FaArrowLeft className="arrow_icon" size={40} onClick={closeVideoHandler} />
 
-        <iframe
-          src={
-            videosrc === ""
-              ? "https://www.youtube.com/embed/nu2HHq3sens"
-              : videosrc
-          }
-        />
+        <iframe src={videosrc} />
       </div>
     </div>,
     document.getElementById("video-modal")
