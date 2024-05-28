@@ -6,20 +6,30 @@ function Movies() {
   const { state } = useContext(loginAuth);
   return (
     <div>
-      <div style={{ margin: "0 4px", width: "100vw", paddingTop: "6rem" }}>
-        <MovieCategory
-          title="Exciting Crime Comedies"
-          movies={state.movies[6].movies}
-        />
-        <MovieCategory title="Gems for You" movies={state.movies[7].movies} />
-        <MovieCategory
-          title="Only on Netflix"
-          movies={state.movies[3].movies}
-        />
-        <MovieCategory
-          title="Chilly Thrillers"
-          movies={state.movies[9].movies}
-        />
+      <div style={{ margin: "0 4px", width: "100vw", height: "60vh", paddingTop: "6rem" }}>
+        {state.movies.length > 0 ? (
+          <>
+           
+            <MovieCategory
+              title="Exciting Crime Comedies"
+              movies={state.movies.slice(20, 30)}
+            />
+            <MovieCategory
+              title="Gems for You"
+              movies={state.movies.slice(30, 40)}
+            />
+            <MovieCategory
+              title="Only on Netflix"
+              movies={state.movies.slice(50, 60)}
+            />
+            <MovieCategory
+              title="Chilly Thrillers"
+              movies={state.movies.slice(70, 80)}
+            />
+          </>
+        ) : (
+          <p>Go to the home page</p>
+        )}
       </div>
     </div>
   );

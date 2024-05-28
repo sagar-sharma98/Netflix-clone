@@ -5,7 +5,7 @@ import Card from "./Card";
 import { IoIosArrowBack } from "react-icons/io";
 import { IoIosArrowForward } from "react-icons/io";
 
-function MovieCategory({title, movies }) {
+function MovieCategory({title, movies, myList=false  }) {
   const listRef = useRef();
   // const [movies, setMovies] = useState([]);
   const [sliderPosition, setSliderPosition] = useState(0);
@@ -45,7 +45,7 @@ function MovieCategory({title, movies }) {
       </div>
       <div className="movies_container" ref={listRef}>
         {movies.map((movie, index) => (
-          <Card key={index} movie={movie}  />
+          <Card key={index} movie={movie} myList={myList} />
         ))}
       </div>
       <div className="right_arrow">

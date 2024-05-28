@@ -7,12 +7,18 @@ import { Login, loginAuth } from "../App";
 
 function Navbar() {
   const [search, setSearch] = useState(false);
+  const [value, setValue] = useState("");
   const navigate = useNavigate();
   const {state} = useContext(loginAuth);
+
+  const inputHandler = (event) => {
+    setValue(event.target.value);
+  }
 
   const searchHandler = (event) => {
     console.log(event); 
     setSearch(true);
+    setValue()
     event.stopPropagation();
     
   };
@@ -38,7 +44,7 @@ function Navbar() {
       <div className="left_container">
         <div className="image_container">
           <img
-            src="https://www.edigitalagency.com.au/wp-content/uploads/Netflix-logo-red-black-png.png"
+            src="https://images.ctfassets.net/y2ske730sjqp/1aONibCke6niZhgPxuiilC/2c401b05a07288746ddf3bd3943fbc76/BrandAssets_Logos_01-Wordmark.jpg?w=940"
             alt="logo"
             width={"130px"}
             height={"74px"}
@@ -71,9 +77,11 @@ function Navbar() {
             <input
               type="search"
               id="search_input"
+              value={value}
+              onChange={inputHandler}
               placeholder="Titles, people, genres"
             />
-          </div>) : (<SlMagnifier color="white" size={22} onClick={searchHandler} />) }
+          </div>) : (<SlMagnifier color="white" size={22}  onClick={searchHandler}/>) }
           <NavLink>Children</NavLink>
           <SlBell color="white" size={22}></SlBell>
           <div className="profile_logo">

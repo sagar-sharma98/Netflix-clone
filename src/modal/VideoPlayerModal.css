@@ -10,14 +10,9 @@
   position: relative;
   width: 100%;
   height: 100%;
-
 }
 
-.video_modal iframe {
-  width: 100%; 
-  height: 100%; 
-  
-}
+
 
 .video_modal .arrow_icon {
   position: absolute;

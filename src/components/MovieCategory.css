@@ -48,3 +48,10 @@
     /* z-index: 10; */
   }
 }
+
+.movie_catagory{
+  p{
+    color: white;
+    text-align: center;
+  }
+}
