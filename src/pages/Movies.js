@@ -6,7 +6,7 @@ function Movies() {
   const { state } = useContext(loginAuth);
   return (
     <div>
-      <div style={{ margin: "0 4px", width: "100vw", height: "60vh", paddingTop: "6rem" }}>
+      <div style={{ margin: "0 4px", width: "100vw", minHeight: "60vh", paddingTop: "6rem" }}>
         {state.movies.length > 0 ? (
           <>
            

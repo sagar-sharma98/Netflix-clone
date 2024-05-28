@@ -7,7 +7,7 @@ function MyList () {
     console.log(state.movies);
 
     return (
-        <div style={{width: "100vw", height: "60vh", paddingTop: "6rem"}}>
+        <div style={{width: "100vw", minHeight: "60vh", paddingTop: "6rem"}}>
             {state.wishList.length > 0 ?<MovieCategory title="My List" movies={state.wishList} myList={true}/> :<p>Go to the home page</p> }
         
         </div>

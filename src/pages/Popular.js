@@ -10,7 +10,7 @@ function Popular() {
       style={{
         margin: "0 4px",
         width: "100vw",
-        height: "60vh",
+        minHeight: "60vh",
         paddingTop: "6rem",
       }}
     >
