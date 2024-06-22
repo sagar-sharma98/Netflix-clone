@@ -8,6 +8,8 @@ import Signup from "./Signup";
 import Movies from "./Movies";
 import LogoutPage from "./LogoutPage";
 import MovieSections from "../components/MovieSections";
+import DummyLink from "./DummyLink";
+import SearchPage from "./SearchPage";
 
 function AllRoutes() {
   return (
@@ -18,6 +20,9 @@ function AllRoutes() {
         <Route path="/tvshows" element={<TvShows />}></Route>
         <Route path="/popular" element={<Popular />}></Route>
         <Route path="/mylist" element={<MyList />}></Route>
+        <Route path="/dummylink/:type" element={<DummyLink/>}></Route>
+        <Route path="/searchpage/:search" element={<SearchPage/>}></Route>
+
       </Route>
       <Route path="/signup" element={<Signup />}></Route>
       <Route path="/login" element={<Login />}></Route>

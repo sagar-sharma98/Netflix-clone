@@ -8,25 +8,53 @@ import BackgroundImage from "../components/BackgroundImage";
 import ErrorModal from "../modal/ErrorModal";
 
 function Signup() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [data, setData] = useState({
+    name: "",
+    email: "",
+    password: "",
+  });
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
   
   const navigate = useNavigate();
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    setData({
+      ...data,
+      [name]: value,
+    });
+  };
+
+
   const handleLogIn = async () => {
     setLoading(true);
     try {
-      const userDetails = await createUserWithEmailAndPassword(
-        firebaseAuth,
-        email,
-        password
+      const response = await fetch(
+        "https://academics.newtonschool.co/api/v1/user/signup",
+        {
+          method: "POST",
+          headers: {
+            'projectId': 'exn9j6ivl5cz',
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            name : data.name,
+            email : data.email,
+            password : data.password,
+            appType : "ott",
+          }),
+        }
       );
-      console.log(userDetails);
-      localStorage.setItem("token", userDetails.user.accessToken);
-      localStorage.setItem("user", JSON.stringify(userDetails.user));
+      const result = await response.json();
+      console.log(result.data);
+      console.log(result);
+      localStorage.setItem("netflixusertoken", result.token);
+     
       navigate("/login");
     } catch (error) {
+      console.log(error);
       setError(true);
     }
     setLoading(false);
@@ -55,17 +83,26 @@ function Signup() {
               />
             </div>
             <div className="container">
+            <input
+                type="text"
+                name="name"
+                placeholder="name"
+                value={data.name}
+                onChange={(e) => handleChange(e)}
+              />
               <input
                 type="text"
+                name="email"
                 placeholder="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                value={data.email}
+                onChange={(e) => handleChange(e)}
               />
               <input
                 type="password"
+                name="password"
                 placeholder="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                value={data.password}
+                onChange={(e) => handleChange(e)}
               />
               <button onClick={handleLogIn}>{!loading ? "Signup" : "Loading..."}</button>
             </div>

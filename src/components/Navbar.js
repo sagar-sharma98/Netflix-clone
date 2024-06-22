@@ -1,33 +1,28 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import "./Navbar.css";
 import { NavLink, useNavigate } from "react-router-dom";
 import { SlMagnifier, SlBell } from "react-icons/sl";
 import { GoTriangleDown } from "react-icons/go";
 import { Login, loginAuth } from "../App";
+import ErrorModal from "../modal/ErrorModal";
 
 function Navbar() {
-  const [search, setSearch] = useState(false);
+  const [hover, setHover] = useState(false);
   const [value, setValue] = useState("");
+  const [error, setError] = useState(false);
   const navigate = useNavigate();
   const {state} = useContext(loginAuth);
+  const ref = useRef(null);
 
   const inputHandler = (event) => {
     setValue(event.target.value);
   }
 
-  const searchHandler = (event) => {
-    console.log(event); 
-    setSearch(true);
-    setValue()
-    event.stopPropagation();
-    
-  };
-
-  const removeInputHandler = (e) => {
-    if(e.target.className !== "search_container"){
-      setSearch(false);
-    }
-    return;
+  const submitHandler = (e) => {
+    e.preventDefault();
+    const search = ref.current.value;
+    console.log(search);
+    navigate(`searchpage/${search}`);
   }
 
   const profileHandler = () => {
@@ -36,11 +31,15 @@ function Navbar() {
     }
     else{
       navigate("/login");
-    }
-    
+    } 
   }
-  return (
-    <div className="navbar_container" onClick={removeInputHandler}>
+
+  const imageClickHandler = () => {
+    navigate("/");
+  }
+
+  return (<>
+    <div className="navbar_container" >
       <div className="left_container">
         <div className="image_container">
           <img
@@ -48,6 +47,8 @@ function Navbar() {
             alt="logo"
             width={"130px"}
             height={"74px"}
+            cursor="pointer"
+            onClick={imageClickHandler}
           />
         </div>
         <div className="list_container">
@@ -71,19 +72,22 @@ function Navbar() {
         </div>
       </div>
       <div className="right_container">
-        <div className="right_nav_container">
-          {search ? (<div className="search_container">
-            <SlMagnifier color="white" size={22} style={{padding: "4px", fontWeight: "bold"}}/>
+        <div className="right_nav_container" >
+          {hover ? (<form className="search_container"  onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => setHover(false)} onSubmit={submitHandler}>
+            
             <input
               type="search"
               id="search_input"
               value={value}
-              onChange={inputHandler}
+              ref={ref}
+              onChange={(e) => inputHandler(e)}
               placeholder="Titles, people, genres"
             />
-          </div>) : (<SlMagnifier color="white" size={22}  onClick={searchHandler}/>) }
-          <NavLink>Children</NavLink>
-          <SlBell color="white" size={22}></SlBell>
+          </form>) : (<SlMagnifier color="white" size={22}  onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}/>) }
+         
+          <SlBell color="white" size={22} onClick={() => setError(true)} cursor="pointer"></SlBell>
           <div className="profile_logo">
             <img
               id="logo_image"
@@ -92,11 +96,13 @@ function Navbar() {
               alt="profile_logo"
               onClick={profileHandler}
             />
-            <GoTriangleDown color="white" />
+            <GoTriangleDown color="white"  onClick={() => setError(true)}/>
           </div>
         </div>
       </div>
     </div>
+    {error && <ErrorModal text="Sorry, work in progress." closeErrorModal={() => setError(false)}/>}
+    </>
   );
 }
 

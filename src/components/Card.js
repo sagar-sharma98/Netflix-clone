@@ -18,6 +18,8 @@ function Card({ movie, myList}) {
   const navigate = useNavigate();
   const video_src = movie.video_url;
 
+  const token = localStorage.getItem("netflixusertoken");
+
   const imageHandler = () => {
     setImageClick(true);
     setHover(false);
@@ -31,10 +33,15 @@ function Card({ movie, myList}) {
   };
 
   const addCircleHandler = (id) => {
+    if(!token){
+      navigate('/login');
+      return;
+    }
     console.log(id);
     dispatch(addWishList(id));
     navigate("/mylist");
   };
+  
 
  const  checkMarkCircleHandler = (id) => {
   console.log(id);
@@ -54,15 +61,15 @@ function Card({ movie, myList}) {
           </div>
           <div className="movie_info">
             <div className="icons">
-              <FaPlayCircle size={30} color="white" onClick={imageHandler} />
+              <FaPlayCircle size={30} color="white" onClick={imageHandler} cursor="pointer"/>
               {myList ?  < IoCheckmarkCircleOutline
                 size={30}
                 color="white"
-                onClick={() => checkMarkCircleHandler(movie["_id"])}
+                onClick={() => checkMarkCircleHandler(movie["_id"])} cursor="pointer"
               /> :   <IoAddCircleOutline
               size={30}
               color="white"
-              onClick={() => addCircleHandler(movie["_id"])}
+              onClick={() => addCircleHandler(movie["_id"])} cursor="pointer"
             />}
              
 

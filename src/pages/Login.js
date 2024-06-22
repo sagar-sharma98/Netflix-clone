@@ -9,12 +9,24 @@ import BackgroundImage from "../components/BackgroundImage";
 import ErrorModal from "../modal/ErrorModal";
 
 function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [loginData, setLoginData] = useState({
+    email: "",
+    password: "",
+  });
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
   const { dispatch } = useContext(loginAuth);
   const navigate = useNavigate();
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    setLoginData({
+      ...loginData,
+      [name]: value,
+    });
+  };
+
 
   const modalBtnHandler = () => {
     setError(false);
@@ -23,9 +35,25 @@ function Login() {
   const handleLogIn = async () => {
     setLoading(true);
     try {
-      await signInWithEmailAndPassword(firebaseAuth, email, password);
+      const response = await fetch("https://academics.newtonschool.co/api/v1/user/login", {
+        method: "POST",
+        headers: {
+          'projectId': 'exn9j6ivl5cz',
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+  
+          email : loginData.email,
+          password : loginData.password,
+          appType : "ott",
+        }),
+      })
+      const result = await response.json();
+      console.log(result);
       dispatch(LoginSuccess(true));
-      alert("login success");
+      localStorage.setItem("netflixusertoken", result.token);
+     
+     
       navigate("/");
     } catch (error) {
       setError(true);
@@ -47,7 +75,7 @@ function Login() {
 
           <div className="form">
             <div className="title">
-              <h1>login</h1>
+              <h1>Login</h1>
               <MdClose
                 className="icon"
                 color="white"
@@ -58,15 +86,17 @@ function Login() {
             <div className="container">
               <input
                 type="text"
+                name="email"
                 placeholder="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                value={loginData.email}
+                onChange={(e) => handleChange(e)}
               />
               <input
                 type="password"
+                name="password"
                 placeholder="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                value={loginData.password}
+                onChange={(e) => handleChange(e)}
               />
               <button onClick={handleLogIn}>{!loading ? "Login" : "Loading..."}</button>
             </div>

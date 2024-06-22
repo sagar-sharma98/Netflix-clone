@@ -25,7 +25,7 @@
   height: 150px;
   top: 2rem;
   left: 0;
-  z-index: 2;
+  z-index: 1;
   width: 3rem;
   .left_btn{
     height: 100%;
@@ -40,7 +40,7 @@
   top: 2rem;
   right: 0;
   width: 3rem;
-  z-index: 2;
+  z-index: 1;
 
   .right_btn{
     height: 100%;

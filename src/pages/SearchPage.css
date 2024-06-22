@@ -1,0 +1,31 @@
+.search-page {
+  
+  width: 100vw;
+  min-height: 60vh;
+  padding-top: 6rem;
+
+  h1 {
+    padding: 0 2rem;
+      color: white;
+    }
+  .paper::-webkit-scrollbar {
+    display: none;
+  }
+  .paper {
+    -ms-overflow-style: none;
+  }
+
+  .paper {
+    scrollbar-width: none;
+  }
+}
+
+.grid-container {
+    padding: 2rem;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr); /* 6 cards per row */
+  gap: 0.8rem;
+  justify-items: center;
+}
+
+

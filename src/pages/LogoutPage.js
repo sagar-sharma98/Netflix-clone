@@ -4,6 +4,7 @@ import "./LogoutPage.css";
 import { signOut } from "firebase/auth";
 import { firebaseAuth } from '../firebase-auth';
 import { LoginSuccess, loginAuth } from '../App';
+import BackgroundImage from '../components/BackgroundImage';
 
 export default function LogoutPage() {
     const { dispatch } = useContext(loginAuth);
@@ -11,12 +12,13 @@ export default function LogoutPage() {
     const handleLogIn = () => {
         dispatch(LoginSuccess(false));
         signOut(firebaseAuth);
-        localStorage.removeItem("token");
-        localStorage.removeItem("user");
+        localStorage.removeItem("netflixusertoken");
+       
         navigate("/");
     }
   return (
     <>
+    <BackgroundImage/>
       <div className="loginContent">
         <div className="form-wrapper">
           <div className="form">

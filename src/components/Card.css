@@ -1,45 +1,57 @@
 .card_container {
   max-width: 220px;
-  width: 250px;
-  height: 150px;
+  height: 170px;
   position: relative;
   background-color: black;
   margin-right: 0.4rem;
   img {
     width: 220px;
-    height: 150px;
+    height: 100%;
     background-color: rgb(193, 119, 7);
+    border-radius: 4px;
   }
   .hover_container {
     display: flex;
     flex-direction: column;
-    z-index: 4;
-    height: 15rem;
+    z-index: 9999;
+    height: 21rem;
     width: 20rem;
     position: absolute;
     bottom: 0;
     left: 0;
+    border-radius: 8px;
     background-color: black;
     transition: 1s ease-in-out;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 1);
+    transition: transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out; 
+    transform: scale(1);
   }
 
   .movie_picture {
     position: relative;
     width: 20rem;
-    height: 150px;
+    height: 14rem;
     object-fit: cover;
     cursor: pointer;
+    border-radius: 8px 8px 0 0;
     img {
+      
       width: 100%;
-      height: 150px;
+      height: 100%;
+      border-radius: 8px 8px 0 0;
     }
   }
 
   .movie_info {
     background-color: black;
     width: 100%;
-    height: 100%;
+    height: 7rem;
     align-content: space-between;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-bottom: 8px;
+    border-radius: 0 0 8px 8px;
   }
 }
 .icons {
@@ -63,4 +75,10 @@
     color: white;
     list-style-type: disc;
   }
+}
+
+.hover_container:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.7); 
+
 }
