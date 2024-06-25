@@ -4,12 +4,14 @@ import { FaPlay } from "react-icons/fa";
 import { AiOutlineInfoCircle } from "react-icons/ai";
 import "./MovieBox.css";
 import VideoPlayerModal from "../modal/VideoPlayerModal";
+import ErrorModal from "../modal/ErrorModal";
 
 const ghostedTrailer = process.env.PUBLIC_URL + "/videos/GHOSTED.mp4";
 
 function MovieBox() {
   const [movie, setMovie] = useState([]);
   const [imageClick, setImageClick] = useState(false);
+  const [moreInfoBtn, setMoreInfoBtn] = useState(false);
  
   
 
@@ -69,7 +71,7 @@ function MovieBox() {
               <FaPlay />
               <p>Play</p>
             </button>
-            <button className="info_btn">
+            <button className="info_btn" onClick={() => setMoreInfoBtn(true)}>
               <AiOutlineInfoCircle size={30} />
               <p> More Info</p>
             </button>
@@ -82,6 +84,7 @@ function MovieBox() {
           closeVideoHandler={videoModalHandler}
         />
       )}
+      {moreInfoBtn && <ErrorModal text="Work in progress on more info" closeErrorModal={() => setMoreInfoBtn(false)}/>}
     </>
   );
 }
